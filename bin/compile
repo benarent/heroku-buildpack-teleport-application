@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+echo "-----> Installing Teleport 5.1"
+# change to the the BUILD_DIR ($1)
+cd $1
+# download the binary
+wget https://get.gravitational.com/teleport-v5.1.0-linux-amd64-bin.tar.gz
+# make a directory to untar (like unzip) the binary
+mkdir -p /app/bin/teleport
+# make a directory for teleport file config
+mkdir -p /app/etc/teleport
+# make a directoy for teleport logs
+mkdir -p /app/.apt/var/log/teleport
+# untar the binary to the directory we want
+tar -C /app/bin/ -xvf teleport-v5.1.0-linux-amd64-bin.tar.gz
+
+cat > teleport.yaml <<EOF
+teleport:
+  data_dir: /app/etc/teleport/teleport/
+  auth_token: 0f490cd1efd1709facfa6fb975a99e26
+  auth_servers:
+  - asteroid-moon.teleport.sh:443
+  log:
+    output: stderr
+    severity: INFO
+auth_service:
+  enabled: no
+ssh_service:
+  enabled: yes
+  labels:
+    cloud: heroku
+proxy_service:
+  enabled: no
+app_service:
+  enabled: yes
+  apps:
+  - name: "herokutest2"
+    uri: "https://aap-jwt.herokuapp.com"
+EOF
+
+
+# Install the runner
+echo "-----> Installing Teleport profile.d script"
+mkdir -p "$BUILD_DIR/.profile.d"
+cat <<EOF > "$BUILD_DIR/.profile.d/teleport.sh"
+export PATH="\$PATH:\$HOME/app/bin/teleport"
+bash -c "./bin/teleport/teleport start --config=teleport.yaml"
+EOF
+chmod +x "$BUILD_DIR/.profile.d/teleport.sh"
+
+# Output Teleport Version
+"$BUILD_DIR/app/bin/teleport/teleport" version
+
+# Installing Complete message
+echo "-----> Installing Teleport Complete"
