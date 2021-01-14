@@ -45,4 +45,8 @@ echo "-----> teleport-buildpack: Moving the start-teleport script into app/bin"
 cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
 chmod +x "$BUILD_DIR/bin/start-teleport"
 
+
 echo "-----> teleport-buildpack: done"
+
+echo "-----> teleport-buildpack: START TELEPORT"
+bin/start-teleport
