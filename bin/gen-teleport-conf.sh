@@ -6,7 +6,7 @@ TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
 cat >> /app/vendor/teleport/teleport.yaml << EOFEOF
 teleport:
-  data_dir: /app/etc/teleport/teleport/
+  data_dir: /app/vendor/teleport/
   auth_token: ${TELEPORT_API}
   auth_servers:
   - ${TELEPORT_URL}

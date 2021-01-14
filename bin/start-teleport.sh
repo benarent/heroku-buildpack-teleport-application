@@ -19,7 +19,7 @@ run-teleport() {
   # Start processes.
 
   echo "-----> Try to run Teleport"
-  bash -c "./vendor/teleport/teleport start --config=/app/vendor/teleport/teleport.yaml"
+  bash -c "~/vendor/teleport/teleport/teleport start --config=/app/vendor/teleport/teleport.yaml"
   #aux-start pgbouncer SIGINT vendor/pgbouncer/bin/pgbouncer vendor/pgbouncer/pgbouncer.ini
   #app-start SIGTERM "$@"
   pid=$!
