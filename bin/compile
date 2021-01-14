@@ -1,64 +1,49 @@
 #!/usr/bin/env bash
+
 echo "-----> Installing Teleport 5.1"
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+# clean up leaking environment
+unset GIT_DIR
+
 # change to the the BUILD_DIR ($1)
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
-BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
+BUILDPACK_DIR="$(dirname "$(dirname "$0")")"
+
 echo "$BUILDPACK_DIR"
 
-cd $1
-# download the binary
+# vendor directories
+VENDORED_TELEPORT="vendor/teleport"
+
+# vendor teleport into the slug
+PATH="$BUILD_DIR/$VENDORED_TELEPORT/bin:$PATH"
+
+mkdir -p "$BUILD_DIR/bin"
+mkdir -p "$BUILD_DIR/$VENDORED_TELEPORT"
+
+echo "-----> teleport-buildpack: Downloading Teleport into slug"
+
 wget https://get.gravitational.com/teleport-v5.1.0-linux-amd64-bin.tar.gz
-# make a directory to untar (like unzip) the binary
-mkdir -p /app/bin/teleport
-# make a directory for teleport file config
-mkdir -p /app/etc/teleport
-# make a directoy for teleport logs
-mkdir -p /app/.apt/var/log/teleport
-# untar the binary to the directory we want
-tar -C /app/bin/ -xvf teleport-v5.1.0-linux-amd64-bin.tar.gz
 
-## TODO: Try this config first, then port these to ENV
-## - Import Auth token from ENV
-## - Import URL from ENV
-## - Set Name based on Dyno name
-## - Set URI based on Heroku Slug
-##
-cat > /app/etc/teleport/teleport.yaml <<EOF
-teleport:
-  data_dir: /app/etc/teleport/teleport/
-  auth_token: 03643801f613e5d5d98049e3de6b7716
-  auth_servers:
-  - asteroid-moon.teleport.sh:443
-  log:
-    output: stderr
-    severity: INFO
-auth_service:
-  enabled: no
-ssh_service:
-  enabled: yes
-  labels:
-    cloud: heroku
-proxy_service:
-  enabled: no
-app_service:
-  enabled: yes
-  apps:
-  - name: "herokutest2"
-    uri: "https://aap-jwt.herokuapp.com"
-EOF
+echo "-----> teleport-buildpack: Vendoring teleport into slug"
+tar xzf teleport-v5.1.0-linux-amd64-bin.tar.gz -C "${BUILD_DIR}"/"${VENDORED_TELEPORT}"
+teleport_version=$("${BUILD_DIR}"/"${VENDORED_TELEPORT}"/bin/teleport version 2>&1 | head -1 | awk '{ print $NF }')
+echo "-----> teleport-buildpack: Installed teleport ${teleport_version}"
 
-# Setting environment variables in .profile.d script (sourced at dyno startup)
-mkdir -p "$BUILD_DIR"/.profile.d
-cat <<EOF >"$BUILD_DIR"/.profile.d/telport.sh
-PATH=/app/bin:\$PATH
-export STACK=$STACK
-EOF
-chmod +x "$BUILD_DIR/.profile.d/teleport.sh"
+echo "-----> teelport-buildpack: Moving the configuration generation script into app/bin"
+cp "$BUILDPACK_DIR/bin/gen-teleport-conf.sh" "$BUILD_DIR/bin"
+chmod +x "$BUILD_DIR/bin/gen-teleport-conf.sh"
 
-# Output Teleport Version
-"$BUILD_DIR/app/bin/teleport/teleport" version
+echo "-----> teleport-buildpack: Moving the start-teleport script into app/bin"
+cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
+chmod +x "$BUILD_DIR/bin/start-teleport"
 
-# Installing Complete message
-echo "-----> Installing Teleport Complete"
+echo "-----> pgbouncer-buildpack: done"
+s
