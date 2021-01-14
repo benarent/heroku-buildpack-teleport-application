@@ -12,7 +12,7 @@ teleport:
   - ${TELEPORT_URL}
   log:
     output: stderr
-    severity: INFO
+    severity: DEBUG
 auth_service:
   enabled: no
 ssh_service:
@@ -23,8 +23,9 @@ proxy_service:
   enabled: no
 app_service:
   enabled: yes
+  debug_app: true
   apps:
-  - name: "herokutest2"
+  - name: "herokutest3"
     uri: "${TELEPORT_HEROKU_URL}"
 EOFEOF
 
