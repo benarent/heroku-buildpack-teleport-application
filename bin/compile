@@ -49,10 +49,13 @@ app_service:
     uri: "https://aap-jwt.herokuapp.com"
 EOF
 
+echo "-----> Try to run Teleport"
+bash -c "./bin/teleport/teleport start --config=/app/etc/teleport/teleport.yaml"
+
 # Install the runner using profile.d
 echo "-----> Installing Teleport profile.d script"
 mkdir -p "$BUILD_DIR/.profile.d"
-cat <<EOF > "$BUILD_DIR/.profile.d/teleport.sh"
+cat > "$BUILD_DIR/.profile.d/teleport.sh" <<EOF
 export TELEPORT_CONF="/app/etc/teleport/teleport.yaml"
 export PATH="\$PATH:\$HOME/app/bin/teleport"
 bash -c "./bin/teleport/teleport start --config=/app/etc/teleport/teleport.yaml"
