@@ -46,4 +46,3 @@ cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
 chmod +x "$BUILD_DIR/bin/start-teleport"
 
 echo "-----> pgbouncer-buildpack: done"
-s
