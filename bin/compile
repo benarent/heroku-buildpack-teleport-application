@@ -34,8 +34,8 @@ wget https://get.gravitational.com/teleport-v5.1.0-linux-amd64-bin.tar.gz
 
 echo "-----> teleport-buildpack: Vendoring teleport into slug"
 tar xzf teleport-v5.1.0-linux-amd64-bin.tar.gz -C "${BUILD_DIR}"/"${VENDORED_TELEPORT}"
-teleport_version=$("${BUILD_DIR}"/"${VENDORED_TELEPORT}"/bin/teleport version 2>&1 | head -1 | awk '{ print $NF }')
-echo "-----> teleport-buildpack: Installed teleport ${teleport_version}"
+#teleport_version=$("${BUILD_DIR}"/"${VENDORED_TELEPORT}"/bin/teleport version 2>&1 | head -1 | awk '{ print $NF }')
+echo "-----> teleport-buildpack: Installed teleport 5.0"
 
 echo "-----> teelport-buildpack: Moving the configuration generation script into app/bin"
 cp "$BUILDPACK_DIR/bin/gen-teleport-conf.sh" "$BUILD_DIR/bin"
@@ -49,4 +49,3 @@ chmod +x "$BUILD_DIR/bin/start-teleport"
 echo "-----> teleport-buildpack: done"
 
 echo "-----> teleport-buildpack: START TELEPORT"
-bin/start-teleport
