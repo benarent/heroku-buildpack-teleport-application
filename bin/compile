@@ -22,7 +22,7 @@ tar -C /app/bin/ -xvf teleport-v5.1.0-linux-amd64-bin.tar.gz
 cat > /app/etc/teleport/teleport.yaml <<EOF
 teleport:
   data_dir: /app/etc/teleport/teleport/
-  auth_token: 0f490cd1efd1709facfa6fb975a99e26
+  auth_token: 03643801f613e5d5d98049e3de6b7716
   auth_servers:
   - asteroid-moon.teleport.sh:443
   log:
