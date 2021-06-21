@@ -4,7 +4,7 @@ TELEPORT_URL=asteroid-moon.teleport.sh:443
 TELEPORT_API=1be2b449659dc89419875b36a53e5757
 TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
-cat >> /app/vendor/teleport/teleport/teleport.yaml << EOF
+cat >> /app/vendor/teleport/teleport.yaml << EOF
       teleport:
       nodename: 581f063b-4921-4315-a121-21c8afceb9c8
       data_dir: /app/vendor/teleport/
