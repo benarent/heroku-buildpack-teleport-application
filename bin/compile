@@ -20,7 +20,7 @@ BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 echo "$BUILDPACK_DIR"
 
 # vendor directories
-VENDORED_TELEPORT="vendor"
+VENDORED_TELEPORT="vendor/teleport"
 
 # vendor teleport into the slug
 PATH="$BUILD_DIR/$VENDORED_TELEPORT/bin:$PATH"
@@ -33,7 +33,7 @@ echo "-----> teleport-buildpack: Downloading Teleport into slug"
 wget https://get.gravitational.com/teleport-v6.2.5-linux-amd64-bin.tar.gz
 
 echo "-----> teleport-buildpack: Vendoring teleport into slug"
-tar xzf teleport-v6.2.5-linux-amd64-bin.tar.gz -C "${BUILD_DIR}"/"${VENDORED_TELEPORT}"
+tar xzf teleport-v6.2.5-linux-amd64-bin.tar.gz -C "${BUILD_DIR}"
 #teleport_version=$("${BUILD_DIR}"/"${VENDORED_TELEPORT}"/bin/teleport version 2>&1 | head -1 | awk '{ print $NF }')
 echo "-----> teleport-buildpack: Installed teleport 6.0"
 
