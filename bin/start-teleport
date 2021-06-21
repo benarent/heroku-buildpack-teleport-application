@@ -28,7 +28,7 @@ run-teleport() {
   # Don't exit top script until all subprocesses are done.
   trap '' SIGTERM
 
-  # This read will block the process waiting on a msg to be put into the
+  # This read will block the process waiting on a msg to be put into thecode
   # fifo. If any of the processes defined above should exit, a msg will be
   # put into the fifo causing the read operation to un-block. The process
   # putting the msg into the fifo will use it's process name as a msg so that

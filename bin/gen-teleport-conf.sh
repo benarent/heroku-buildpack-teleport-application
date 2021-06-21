@@ -4,7 +4,7 @@ TELEPORT_URL=asteroid-moon.teleport.sh:443
 TELEPORT_API=1be2b449659dc89419875b36a53e5757
 TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
-cat >> /app/vendor/teleport/teleport.yaml << EOFEOF
+cat >> /app/vendor/teleport/teleport.yaml << EOF
 teleport:
   data_dir: /app/vendor/teleport/
   auth_token: ${TELEPORT_API}
@@ -27,6 +27,6 @@ app_service:
   apps:
   - name: "herokutest3"
     uri: "${TELEPORT_HEROKU_URL}"
-EOFEOF
+EOF
 
 chmod go-rwx /app/vendor/teleport/*

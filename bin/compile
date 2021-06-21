@@ -15,7 +15,7 @@ unset GIT_DIR
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
-BUILDPACK_DIR="$(dirname "$(dirname "$0")")"
+BUILDPACK_DIR=$(cd "$(dirname "$0")"; cd ..; pwd)
 
 echo "$BUILDPACK_DIR"
 
