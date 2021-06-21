@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 TELEPORT_URL=asteroid-moon.teleport.sh:443
-TELEPORT_API=03643801f613e5d5d98049e3de6b7716
+TELEPORT_API=1be2b449659dc89419875b36a53e5757
 TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
 cat >> /app/vendor/teleport/teleport.yaml << EOFEOF
