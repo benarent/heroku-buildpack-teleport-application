@@ -22,7 +22,7 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
         enabled: "yes"
         apps:
         - name: "demo-app"
-          uri: "https://aap-jwt.herokuapp.com
+          uri: "https://aap-jwt.herokuapp.com"
 EOF
 
 chmod go-rwx /app/vendor/teleport/*
