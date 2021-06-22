@@ -6,12 +6,12 @@ TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
 cat >> /app/vendor/teleport/teleport.yaml << EOF
       teleport:
-      nodename: 581f063b-4921-4315-a121-21c8afceb9c8
-      data_dir: /app/vendor/teleport/
-      log:
-          output: stderr
-          severity: INFO
-      ca_pin: ""
+        nodename: 581f063b-4921-4315-a121-21c8afceb9c8
+        data_dir: /app/vendor/teleport/
+        log:
+            output: stderr
+            severity: INFO
+        ca_pin: ""
       auth_service:
         enabled: "yes"
         listen_addr: 0.0.0.0:3025
@@ -20,11 +20,11 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
         enabled: "yes"
       proxy_service:
         enabled: "yes"
-      listen_addr: 0.0.0.0:3023
-      web_listen_addr: :443
-      public_addr: aap-jwt.herokuapp.com:443
-      https_keypairs: []
-      acme:
+        listen_addr: 0.0.0.0:3023
+        web_listen_addr: :443
+        public_addr: aap-jwt.herokuapp.com:443
+        https_keypairs: []
+        acme:
           enabled: "yes"
           email: ben@goteleport.com
 EOF
