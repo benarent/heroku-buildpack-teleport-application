@@ -13,13 +13,13 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
           severity: INFO
       ca_pin: ""
       auth_service:
-      enabled: "yes"
-      listen_addr: 0.0.0.0:3025
-      cluster_name: aap-jwt.herokuapp.com
+        enabled: "yes"
+        listen_addr: 0.0.0.0:3025
+        cluster_name: aap-jwt.herokuapp.com
       ssh_service:
-      enabled: "yes"
+        enabled: "yes"
       proxy_service:
-      enabled: "yes"
+        enabled: "yes"
       listen_addr: 0.0.0.0:3023
       web_listen_addr: :443
       public_addr: aap-jwt.herokuapp.com:443

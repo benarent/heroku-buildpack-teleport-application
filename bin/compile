@@ -40,11 +40,14 @@ echo "-----> teleport-buildpack: Installed teleport 6.0"
 echo "-----> teelport-buildpack: Moving the configuration generation script into app/bin"
 cp "$BUILDPACK_DIR/bin/gen-teleport-conf.sh" "$BUILD_DIR/bin"
 chmod +x "$BUILD_DIR/bin/gen-teleport-conf.sh"
-#sh $BUILD_DIR/bin/gen-teleport-conf.sh
+
+
 
 echo "-----> teleport-buildpack: Moving the start-teleport script into app/bin"
 cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
 chmod +x "$BUILD_DIR/bin/start-teleport"
+
+#sh $BUILD_DIR/bin/gen-teleport-conf.sh
 
 
 
