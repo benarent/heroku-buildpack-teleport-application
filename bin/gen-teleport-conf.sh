@@ -21,8 +21,8 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
       proxy_service:
         enabled: "yes"
         listen_addr: 0.0.0.0:3023
-        web_listen_addr: :443
-        public_addr: aap-jwt.herokuapp.com:443
+        web_listen_addr: :3080
+        public_addr: aap-jwt.herokuapp.com:3080
         https_keypairs: []
         acme:
           enabled: "yes"
