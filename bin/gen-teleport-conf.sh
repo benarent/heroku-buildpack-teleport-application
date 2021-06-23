@@ -8,7 +8,7 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
       teleport:
         auth_token: a3bfe499e06a7c425560011211d4fa8d
         auth_servers:
-            - asteroid-moon.teleport.sh:443
+        - asteroid-moon.teleport.sh:443
         data_dir: /app/vendor/teleport/
         log:
             output: stderr
