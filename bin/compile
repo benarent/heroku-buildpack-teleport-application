@@ -57,7 +57,7 @@ echo "-----> teleport-buildpack: START TELEPORT"
 
 
 # Install the runner
-topic "Installing Teleport runner"
+echo "---> Installing Teleport runner"
 mkdir -p "$BUILD_DIR/.profile.d"
 cp "$BUILDPACK_DIR/extra/teleport.sh" "$BUILD_DIR/.profile.d/"
 chmod +x "$BUILD_DIR/.profile.d/teleport.sh"
