@@ -26,6 +26,6 @@ run-teleport() {
 config-gen() {
   # Generate config files
   at config-gen-start
-  source bin/gen-teleport-conf.sh
+  source ~/bin/gen-teleport-conf.sh
   at config-gen-end
 }
