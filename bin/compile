@@ -35,26 +35,19 @@ wget https://get.gravitational.com/teleport-v6.2.5-linux-amd64-bin.tar.gz
 echo "-----> teleport-buildpack: Vendoring teleport into slug"
 tar xzf teleport-v6.2.5-linux-amd64-bin.tar.gz -C "${BUILD_DIR}"/"${VENDORED_TELEPORT}"
 #teleport_version=$("${BUILD_DIR}"/"${VENDORED_TELEPORT}"/bin/teleport version 2>&1 | head -1 | awk '{ print $NF }')
-echo "-----> teleport-buildpack: Installed teleport 6.0"
+echo "-----> teleport-buildpack: Installed teleport 6.2.5"
 
 echo "-----> teelport-buildpack: Moving the configuration generation script into app/bin"
 cp "$BUILDPACK_DIR/bin/gen-teleport-conf.sh" "$BUILD_DIR/bin"
 chmod +x "$BUILD_DIR/bin/gen-teleport-conf.sh"
 
-
-
-echo "-----> teleport-buildpack: Moving the start-teleport script into app/bin"
-cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
-chmod +x "$BUILD_DIR/bin/start-teleport"
+#echo "-----> teleport-buildpack: Moving the start-teleport script into app/bin"
+#cp "$BUILDPACK_DIR/bin/start-teleport" "$BUILD_DIR/bin/"
+#chmod +x "$BUILD_DIR/bin/start-teleport"
 
 #sh $BUILD_DIR/bin/gen-teleport-conf.sh
 
-
-
 echo "-----> teleport-buildpack: done"
-
-echo "-----> teleport-buildpack: START TELEPORT"
-
 
 # Install the runner
 echo "---> Installing Teleport runner"

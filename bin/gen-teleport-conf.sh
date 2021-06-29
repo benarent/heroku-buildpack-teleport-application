@@ -6,9 +6,9 @@ TELEPORT_HEROKU_URL=https://aap-jwt.herokuapp.com
 
 cat >> /app/vendor/teleport/teleport.yaml << EOF
       teleport:
-        auth_token: 981e79401df3611b3f5b48a2e9d2ad20
+        auth_token: ${TELEPORT_API}
         auth_servers:
-        - asteroid-moon.teleport.sh:443
+        - ${TELEPORT_URL}
         data_dir: /app/vendor/teleport/
         log:
             output: stderr
@@ -24,7 +24,7 @@ cat >> /app/vendor/teleport/teleport.yaml << EOF
         enabled: "yes"
         apps:
         - name: "demo-app"
-          uri: "https://aap-jwt.herokuapp.com"
+          uri: "${TELEPORT_HEROKU_URL}"
 EOF
 
 chmod go-rwx /app/vendor/teleport/*
