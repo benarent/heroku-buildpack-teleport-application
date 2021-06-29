@@ -8,4 +8,4 @@ export LANG=${LANG:-en_US.UTF-8}
 
 echo "-----> RUN TELEPORT.SH" 
 source ~/bin/gen-teleport-conf.sh
-bash -c "~/vendor/teleport/teleport/teleport start --config=/app/vendor/teleport/teleport.yaml"
+bash -c "~/vendor/teleport/teleport/teleport start --config=/app/vendor/teleport/teleport.yaml" &
